@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: populate-schema
+      author: shuvaev.a
+      changes:
+        - sqlFile:
+            dbms:  'mysql'
+            splitStatements:  true
+            path:  db/changelog/populate.sql
+            stripComments:  true

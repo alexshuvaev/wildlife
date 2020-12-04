@@ -1,0 +1,85 @@
+databaseChangeLog:
+  - changeSet:
+      id: 10
+      author: shuvaev.a
+      changes:
+      - createTable:
+          catalogName: sanctuary
+          schemaName: public
+          tableName: animal_type
+          columns:
+            - column:
+                autoIncrement: true
+                constraints:
+                  nullable: false
+                  primaryKey: true
+                  primaryKeyName: animal_type_pkey
+                name: id
+                type: int
+            - column:
+                name: name
+                type: varchar(255)
+            - column:
+                name: animal_class
+                type: varchar(255)
+            - column:
+                name: populations_group
+                type: varchar(255)
+
+      - createTable:
+          catalogName: sanctuary
+          schemaName: public
+          tableName: territory
+          columns:
+            - column:
+                autoIncrement: true
+                constraints:
+                  nullable: false
+                  primaryKey: true
+                  primaryKeyName: territory
+                name: id
+                type: int
+            - column:
+                name: name
+                type: varchar(255)
+            - column:
+                name: area_code
+                type: varchar(255)
+            - column:
+                name: square
+                type: decimal(7,2)
+            - column:
+                name: person
+                type: varchar(255)
+            - column:
+                name: phone
+                type: varchar(255)
+
+      - createTable:
+          catalogName: sanctuary
+          schemaName: public
+          tableName: animal
+          columns:
+            - column:
+                autoIncrement: true
+                constraints:
+                  nullable: false
+                  primaryKey: true
+                  primaryKeyName: animal_pkey
+                name: id
+                type: int
+            - column:
+                name: animal_type
+                type: int
+                constraints:
+                  nullable: false
+                  foreignKeyName: fk_animal$animal_type
+                  references: animal_type(id)
+            - column:
+                name: territory
+                type: int
+                constraints:
+                  nullable: false
+                  foreignKeyName: fk_animal$territory
+                  references: territory(id)
+
